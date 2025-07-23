@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍길동 - 박사과정 연구원</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            background: #ddd;
+            display: inline-block;
+            line-height: 150px;
+            text-align: center;
+            color: #666;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        nav {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: #f0f0f0;
+            color: #1e3c72;
+        }
+        
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .research-item, .publication-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #1e3c72;
+        }
+        
+        .publication-item h3 {
+            color: #2a5298;
+            margin-bottom: 8px;
+        }
+        
+        .authors {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .venue {
+            color: #888;
+            font-size: 0.95em;
+        }
+        
+        .date {
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">사진</div>
+            <h1>홍길동</h1>
+            <p class="subtitle">박사과정 연구원 | 컴퓨터공학과</p>
+            <p class="subtitle">○○대학교</p>
+            <div class="contact-info">
+                <a href="mailto:your.email@university.ac.kr">📧 your.email@university.ac.kr</a>
+                <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a>
+                <a href="https://scholar.google.com/citations?user=USERID" target="_blank">📚 Google Scholar</a>
+                <a href="https://www.linkedin.com/in/yourusername" target="_blank">🔗 LinkedIn</a>
+            </div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#research">연구분야</a></li>
+                <li><a href="#publications">논문</a></li>
+                <li><a href="#education">학력</a></li>
+                <li><a href="#skills">기술</a></li>
+            </ul>
+        </nav>
+        
+        <section id="about" class="section">
+            <h2>소개</h2>
+            <p>
+                안녕하세요! 저는 ○○대학교 컴퓨터공학과 박사과정에 재학 중인 홍길동입니다. 
+                주요 연구 분야는 [연구분야]이며, 특히 [세부 주제]에 관심을 가지고 연구하고 있습니다.
+            </p>
+            <p>
+                현재 [지도교수님 성함] 교수님의 [연구실 이름] 연구실에서 [주요 연구 프로젝트]에 참여하고 있으며,
+                [연구 목표나 비전]을 위해 노력하고 있습니다.
+            </p>
+        </section>
+        
+        <section id="research" class="section">
+            <h2>연구 분야</h2>
+            <div class="research-item">
+                <h3>기계학습 및 딥러닝</h3>
+                <p>컴퓨터 비전 분야에서의 딥러닝 모델 최적화 및 경량화 연구</p>
+            </div>
+            <div class="research-item">
+                <h3>자연어 처리</h3>
+                <p>대규모 언어 모델의 효율적인 학습 및 추론 방법론 연구</p>
+            </div>
+            <div class="research-item">
+                <h3>분산 시스템</h3>
+                <p>대규모 분산 환경에서의 효율적인 데이터 처리 알고리즘 개발</p>
+            </div>
+        </section>
+        
+        <section id="publications" class="section">
+            <h2>논문</h2>
+            <div class="publication-item">
+                <h3>Efficient Deep Learning Model Compression for Edge Devices</h3>
+                <p class="authors"><strong>홍길동</strong>, 김철수, 이영희, 박민수</p>
+                <p class="venue">International Conference on Computer Vision (ICCV), 2024</p>
+            </div>
+            <div class="publication-item">
+                <h3>Adaptive Learning Rate Scheduling for Large-Scale Model Training</h3>
+                <p class="authors">김철수, <strong>홍길동</strong>, 박민수</p>
+                <p class="venue">Neural Information Processing Systems (NeurIPS), 2023</p>
+            </div>
+            <div class="publication-item">
+                <h3>분산 환경에서의 효율적인 그래프 처리 알고리즘</h3>
+                <p class="authors"><strong>홍길동</strong>, 이영희</p>
+                <p class="venue">정보과학회논문지, 2023</p>
+            </div>
+        </section>
+        
+        <section id="education" class="section">
+            <h2>학력</h2>
+            <div class="education-item">
+                <h3>박사과정 - 컴퓨터공학</h3>
+                <p>○○대학교 | 2022.03 - 현재</p>
+                <p>지도교수: [교수님 성함]</p>
+            </div>
+            <div class="education-item">
+                <h3>석사 - 컴퓨터공학</h3>
+                <p>○○대학교 | 2020.03 - 2022.02</p>
+                <p>논문: "딥러닝 모델의 효율적인 압축 기법에 관한 연구"</p>
+            </div>
+            <div class="education-item">
+                <h3>학사 - 컴퓨터공학</h3>
+                <p>○○대학교 | 2016.03 - 2020.02</p>
+                <p>성적: 4.2/4.5 (magna cum laude)</p>
+            </div>
+        </section>
+        
+        <section id="skills" class="section">
+            <h2>기술 스택</h2>
+            <h3>프로그래밍 언어</h3>
+            <div class="skills">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">MATLAB</span>
+            </div>
+            
+            <h3 style="margin-top: 20px;">프레임워크 & 도구</h3>
+            <div class="skills">
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">LaTeX</span>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 홍길동. All rights reserved.</p>
+            <p>Last updated: January 2025</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+        
+        // 스크롤 시 네비게이션 하이라이트
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.background = '#e3f2fd';
+                    link.style.color = '#1e3c72';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
