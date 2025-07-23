@@ -97,6 +97,8 @@
                         var(--gradient) border-box;
             overflow: hidden;
             animation: float 6s ease-in-out infinite;
+            object-fit: cover;
+            display: block;
         }
         
         @keyframes float {
@@ -104,12 +106,16 @@
             50% { transform: translateY(-20px); }
         }
         
-        .profile-img::before {
+        /* Placeholder style for when image is not loaded */
+        .profile-img:not([src]), .profile-img[src=""] {
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-img:not([src])::before, .profile-img[src=""]::before {
             content: 'Photo';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             color: #666;
             font-size: 1.2em;
         }
@@ -476,7 +482,7 @@
             <div class="hero-content">
                 <div class="profile-container">
                     <div class="profile-glow"></div>
-                    <div class="profile-img"></div>
+                    <img src="profile.jpg" alt="Profile Photo" class="profile-img">
                 </div>
                 <h1>John Doe</h1>
                 <p class="subtitle">PhD Candidate in Computer Science</p>
