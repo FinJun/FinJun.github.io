@@ -5,351 +5,680 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Doe - PhD Candidate</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #1e1b4b;
+            --light: #faf5ff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: #1f2937;
+            background: #0f0f23;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0f0f23, #1a1a2e);
+        }
+        
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%239C92AC" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
+            animation: drift 20s infinite linear;
+        }
+        
+        @keyframes drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-60px, -60px); }
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
         
+        /* Hero Section */
         header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .hero-content {
             text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-container {
+            position: relative;
+            display: inline-block;
             margin-bottom: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 5px solid white;
-            margin-bottom: 20px;
-            background: #ddd;
-            display: inline-block;
-            line-height: 150px;
-            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 5px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        var(--gradient) border-box;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .profile-img::before {
+            content: 'Photo';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: #666;
+            font-size: 1.2em;
+        }
+        
+        .profile-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            height: 250px;
+            background: var(--gradient);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.5;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
         }
         
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
         }
         
         .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 20px;
+            font-size: 1.3em;
+            color: #e0e7ff;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
         
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
         
-        .contact-info a {
-            color: white;
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #e0e7ff;
             text-decoration: none;
-            opacity: 0.9;
-            transition: opacity 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .contact-info a:hover {
-            opacity: 1;
-            text-decoration: underline;
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
         
+        .contact-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Navigation */
         nav {
-            background: white;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 20px;
-            z-index: 100;
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
         
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             gap: 30px;
-            flex-wrap: wrap;
         }
         
         nav a {
-            color: #333;
+            color: #e0e7ff;
             text-decoration: none;
             font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            position: relative;
+            transition: color 0.3s;
         }
         
-        nav a:hover {
-            background: #f0f0f0;
-            color: #1e3c72;
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
         }
         
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Sections */
         .section {
-            background: white;
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 100vh;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         h2 {
-            color: #1e3c72;
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 40px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .section p {
+            color: #cbd5e1;
+            font-size: 1.1em;
+            line-height: 1.8;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
         }
         
-        .research-item, .publication-item, .education-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #1e3c72;
+        /* Research Items */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
-        .publication-item h3 {
-            color: #2a5298;
-            margin-bottom: 8px;
+        .research-card {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .authors {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 5px;
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
         
-        .venue {
-            color: #888;
+        .research-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        
+        .research-card h3 {
+            color: #e0e7ff;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .research-card p {
+            color: #94a3b8;
             font-size: 0.95em;
         }
         
-        .date {
-            color: #888;
-            font-size: 0.9em;
+        /* Publications */
+        .publication-item {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(99, 102, 241, 0.2);
+        }
+        
+        .publication-item h3 {
+            color: #e0e7ff;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .authors {
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        
+        .venue {
+            color: #8b5cf6;
+            font-weight: 500;
+        }
+        
+        /* Skills */
+        .skills-container {
+            margin-top: 30px;
+        }
+        
+        .skill-category {
+            margin-bottom: 30px;
+        }
+        
+        .skill-category h3 {
+            color: #e0e7ff;
+            margin-bottom: 20px;
+            font-size: 1.3em;
         }
         
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 15px;
         }
         
         .skill-tag {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: #e0e7ff;
             font-size: 0.9em;
+            transition: all 0.3s ease;
+            cursor: default;
         }
         
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            color: #666;
+            padding: 60px 20px;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2em;
+            color: #64748b;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            header {
-                padding: 40px 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .section {
-                padding: 25px;
-            }
-            
-            nav ul {
-                gap: 15px;
-            }
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            nav { width: 90%; padding: 10px 20px; }
+            nav ul { gap: 15px; }
+            .glass-card { padding: 30px 20px; }
+            .research-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+    
     <div class="container">
-        <header>
-            <div class="profile-img">Photo</div>
-            <h1>John Doe</h1>
-            <p class="subtitle">PhD Candidate | Computer Science</p>
-            <p class="subtitle">University Name</p>
-            <div class="contact-info">
-                <a href="mailto:your.email@university.edu">📧 your.email@university.edu</a>
-                <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a>
-                <a href="https://scholar.google.com/citations?user=USERID" target="_blank">📚 Google Scholar</a>
-                <a href="https://www.linkedin.com/in/yourusername" target="_blank">🔗 LinkedIn</a>
+        <header id="home">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <div class="profile-img"></div>
+                </div>
+                <h1>John Doe</h1>
+                <p class="subtitle">PhD Candidate in Computer Science</p>
+                <p class="subtitle">AI Research Lab • University Name</p>
+                <div class="contact-info">
+                    <a href="mailto:your.email@university.edu" class="contact-link">
+                        <span>📧</span> Email
+                    </a>
+                    <a href="https://github.com/yourusername" target="_blank" class="contact-link">
+                        <span>💻</span> GitHub
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=USERID" target="_blank" class="contact-link">
+                        <span>📚</span> Scholar
+                    </a>
+                    <a href="https://www.linkedin.com/in/yourusername" target="_blank" class="contact-link">
+                        <span>🔗</span> LinkedIn
+                    </a>
+                </div>
             </div>
+            <div class="scroll-indicator"></div>
         </header>
         
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </nav>
-        
         <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>
-                Hello! I am a PhD candidate in Computer Science at [University Name]. 
-                My research interests lie in [research area], with a particular focus on [specific topic].
-            </p>
-            <p>
-                Currently, I am working in the [Lab Name] under the supervision of Prof. [Advisor Name],
-                where I am involved in [main research project]. My goal is to [research vision/objective].
-            </p>
+            <div class="glass-card">
+                <h2>About Me</h2>
+                <p>
+                    I'm a passionate researcher exploring the intersection of artificial intelligence and human-computer interaction. 
+                    My work focuses on developing innovative machine learning algorithms that can understand and adapt to human behavior.
+                </p>
+                <p>
+                    Currently pursuing my PhD at [University Name], I work in the [Lab Name] under the mentorship of Prof. [Advisor Name]. 
+                    My research aims to bridge the gap between theoretical AI and practical applications that can make a real difference in people's lives.
+                </p>
+                <p>
+                    When I'm not debugging code or writing papers, you can find me exploring new coffee shops, 
+                    hiking in the mountains, or contributing to open-source projects that democratize AI technology.
+                </p>
+            </div>
         </section>
         
         <section id="research" class="section">
-            <h2>Research Interests</h2>
-            <div class="research-item">
-                <h3>Machine Learning & Deep Learning</h3>
-                <p>Optimization and compression of deep learning models for computer vision applications</p>
-            </div>
-            <div class="research-item">
-                <h3>Natural Language Processing</h3>
-                <p>Efficient training and inference methods for large language models</p>
-            </div>
-            <div class="research-item">
-                <h3>Distributed Systems</h3>
-                <p>Development of efficient data processing algorithms for large-scale distributed environments</p>
+            <div class="glass-card">
+                <h2>Research Interests</h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h3>🧠 Deep Learning</h3>
+                        <p>Developing efficient neural architectures for edge computing and resource-constrained environments</p>
+                    </div>
+                    <div class="research-card">
+                        <h3>🤖 Computer Vision</h3>
+                        <p>Creating robust vision systems that can understand and interpret complex visual scenes</p>
+                    </div>
+                    <div class="research-card">
+                        <h3>💬 Natural Language Processing</h3>
+                        <p>Building language models that can engage in meaningful and contextual conversations</p>
+                    </div>
+                    <div class="research-card">
+                        <h3>🔒 AI Safety & Ethics</h3>
+                        <p>Ensuring AI systems are transparent, fair, and aligned with human values</p>
+                    </div>
+                    <div class="research-card">
+                        <h3>🌐 Distributed Systems</h3>
+                        <p>Designing scalable architectures for training and deploying large-scale AI models</p>
+                    </div>
+                    <div class="research-card">
+                        <h3>🎮 Reinforcement Learning</h3>
+                        <p>Exploring RL algorithms for real-world applications in robotics and game AI</p>
+                    </div>
+                </div>
             </div>
         </section>
         
         <section id="publications" class="section">
-            <h2>Publications</h2>
-            <div class="publication-item">
-                <h3>Efficient Deep Learning Model Compression for Edge Devices</h3>
-                <p class="authors"><strong>John Doe</strong>, Alice Smith, Bob Johnson, Carol Williams</p>
-                <p class="venue">International Conference on Computer Vision (ICCV), 2024</p>
-            </div>
-            <div class="publication-item">
-                <h3>Adaptive Learning Rate Scheduling for Large-Scale Model Training</h3>
-                <p class="authors">Alice Smith, <strong>John Doe</strong>, Carol Williams</p>
-                <p class="venue">Neural Information Processing Systems (NeurIPS), 2023</p>
-            </div>
-            <div class="publication-item">
-                <h3>Efficient Graph Processing Algorithms in Distributed Environments</h3>
-                <p class="authors"><strong>John Doe</strong>, Bob Johnson</p>
-                <p class="venue">IEEE Transactions on Parallel and Distributed Systems, 2023</p>
-            </div>
-        </section>
-        
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>PhD in Computer Science</h3>
-                <p>University Name | 2022 - Present</p>
-                <p>Advisor: Prof. [Advisor Name]</p>
-            </div>
-            <div class="education-item">
-                <h3>MS in Computer Science</h3>
-                <p>University Name | 2020 - 2022</p>
-                <p>Thesis: "Efficient Compression Techniques for Deep Learning Models"</p>
-            </div>
-            <div class="education-item">
-                <h3>BS in Computer Science</h3>
-                <p>University Name | 2016 - 2020</p>
-                <p>GPA: 3.8/4.0 (Magna Cum Laude)</p>
+            <div class="glass-card">
+                <h2>Selected Publications</h2>
+                <div class="publication-item">
+                    <h3>Neural Architecture Search for Edge Devices: A Comprehensive Study</h3>
+                    <p class="authors"><strong>John Doe</strong>, Alice Smith, Bob Johnson, Carol Williams</p>
+                    <p class="venue">ICCV 2024 • International Conference on Computer Vision</p>
+                </div>
+                <div class="publication-item">
+                    <h3>Adaptive Learning Strategies for Large Language Models</h3>
+                    <p class="authors">Alice Smith, <strong>John Doe</strong>, David Brown</p>
+                    <p class="venue">NeurIPS 2023 • Neural Information Processing Systems</p>
+                </div>
+                <div class="publication-item">
+                    <h3>Federated Learning in Healthcare: Privacy-Preserving AI Solutions</h3>
+                    <p class="authors"><strong>John Doe</strong>, Emily Chen, Frank Lee</p>
+                    <p class="venue">Nature Machine Intelligence, 2023</p>
+                </div>
+                <div class="publication-item">
+                    <h3>Real-time Object Detection in Augmented Reality Applications</h3>
+                    <p class="authors">Bob Johnson, <strong>John Doe</strong>, Grace Kim</p>
+                    <p class="venue">CVPR 2023 • Computer Vision and Pattern Recognition</p>
+                </div>
             </div>
         </section>
         
         <section id="skills" class="section">
-            <h2>Technical Skills</h2>
-            <h3>Programming Languages</h3>
-            <div class="skills">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">MATLAB</span>
-            </div>
-            
-            <h3 style="margin-top: 20px;">Frameworks & Tools</h3>
-            <div class="skills">
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">LaTeX</span>
+            <div class="glass-card">
+                <h2>Technical Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Julia</span>
+                            <span class="skill-tag">Rust</span>
+                            <span class="skill-tag">CUDA</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI/ML Frameworks</h3>
+                        <div class="skills">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">JAX</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">scikit-learn</span>
+                            <span class="skill-tag">OpenCV</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Technologies</h3>
+                        <div class="skills">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">LaTeX</span>
+                            <span class="skill-tag">Weights & Biases</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
         <footer>
-            <p>&copy; 2025 John Doe. All rights reserved.</p>
+            <p>© 2025 John Doe • Built with passion and lots of coffee ☕</p>
             <p>Last updated: January 2025</p>
         </footer>
     </div>
     
     <script>
-        // Smooth scrolling effect
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
         });
         
-        // Navigation highlight on scroll
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.bg-animation');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+        
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+        
+        // Dynamic navigation highlighting
         window.addEventListener('scroll', () => {
             let current = '';
             const sections = document.querySelectorAll('section');
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
+                if (pageYOffset >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
             
             document.querySelectorAll('nav a').forEach(link => {
-                link.style.background = '';
+                link.style.color = '#e0e7ff';
                 if (link.getAttribute('href').slice(1) === current) {
-                    link.style.background = '#e3f2fd';
-                    link.style.color = '#1e3c72';
+                    link.style.color = '#a78bfa';
                 }
             });
         });
