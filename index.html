@@ -133,6 +133,20 @@
             color: #5d4e37;
         }
 
+        .news-alert .news-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f9a825;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .news-alert .news-header .emoji {
+            font-size: 16px;
+        }
+
         .news-alert strong {
             color: #333;
         }
@@ -341,8 +355,14 @@
         <div class="right-column">
             <!-- Recent News -->
             <div class="news-alert">
-                <strong>2023-2024.</strong> Visiting Graduate Student at University of Toronto (6 months) - 
-                Awarded $450,000 fellowship from Ministry of Science and ICT, Korea & MIE Graduate School
+                <div class="news-header">
+                    <span class="emoji">📢</span>
+                    <span>Recent News!</span>
+                </div>
+                <div>
+                    <strong>2023-2024.</strong> Visiting Graduate Student at University of Toronto (6 months) - 
+                    Awarded $450,000 fellowship from Ministry of Science and ICT, Korea & MIE Graduate School
+                </div>
             </div>
 
             <!-- About -->
@@ -502,4 +522,3 @@
     </script>
 </body>
 </html>
-
